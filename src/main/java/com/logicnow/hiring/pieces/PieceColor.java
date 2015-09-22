@@ -1,4 +1,4 @@
-package com.logicnow.hiring;
+package com.logicnow.hiring.pieces;
 
 public enum PieceColor {
 
