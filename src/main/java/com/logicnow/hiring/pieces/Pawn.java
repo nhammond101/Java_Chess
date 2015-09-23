@@ -11,29 +11,29 @@ public class Pawn extends ChessPiece
         this.pieceColor = pieceColor;
     }
 
-    public void move( MovementType movementType, int newX, int newY ) throws InvalidMovementException
+    public void move( MovementType movementType, int newXCoordinate, int newYCoordinate ) throws InvalidMovementException
     {
         switch ( movementType )
         {
             case MOVE:
-                if ( !isValidMoveForChessPiece( newX, newY ) )
+                if ( !isValidMoveForChessPiece( newXCoordinate, newYCoordinate ) )
                 {
-                    throw new InvalidMovementException( "Invalid movement", this, newX, newY, movementType );
+                    throw new InvalidMovementException( "Invalid movement", this, newXCoordinate, newYCoordinate, movementType );
                 }
                 break;
             case CAPTURE:
-                if ( !isValidCaptureForChessPiece( newX, newY ) )
+                if ( !isValidCaptureForChessPiece( newXCoordinate, newYCoordinate ) )
                 {
-                    throw new InvalidMovementException( "Invalid movement", this, newX, newY, movementType );
+                    throw new InvalidMovementException( "Invalid movement", this, newXCoordinate, newYCoordinate, movementType );
                 }
                 break;
             default:
-                throw new InvalidMovementException( "Unrecognised MovementType: " + movementType, this, newX, newY, movementType );
+                throw new InvalidMovementException( "Unrecognised MovementType: " + movementType, this, newXCoordinate, newYCoordinate, movementType );
         }
 
 
         // does a piece already occupy the new spot?
-        ChessPiece occupyingPiece = getChessBoard().getPieceAtCoordinate( newX, newY );
+        ChessPiece occupyingPiece = getChessBoard().getPieceAtCoordinate( newXCoordinate, newYCoordinate );
 
         // if valid position and a piece already exists that isn't on the same side, capture
         if ( occupyingPiece != null )
@@ -41,37 +41,37 @@ public class Pawn extends ChessPiece
             // same colour, same side
             if ( this.getPieceColor().equals( occupyingPiece.getPieceColor() ) )
             {
-                throw new InvalidMovementException( "A Chess piece on the same side already exists at position " + newX + "," + newY, this, newX, newY, movementType );
+                throw new InvalidMovementException( "A Chess piece on the same side already exists at position " + newXCoordinate + "," + newYCoordinate, this, newXCoordinate, newYCoordinate, movementType );
             }
 
             this.capturePiece( occupyingPiece );
         }
 
         // now move the piece to the new position
-        this.setXCoordinate( newX );
-        this.setYCoordinate( newY );
+        this.setXCoordinate( newXCoordinate );
+        this.setYCoordinate( newYCoordinate );
 
     }
 
-    public boolean isValidMoveForChessPiece( int x, int y )
+    public boolean isValidMoveForChessPiece( int xCoordinate, int yCoordinate )
     {
         // Pawns can only move one space forward
         if ( this.getInitYCoordinate() - 2 < 0 )
         {
             // this pawn started at the bottom the of board so y must be one greater than current y coordinate
-            return ( y - this.getYCoordinate() == 1 );
+            return ( yCoordinate - this.getYCoordinate() == 1 );
         }
         else
         {
             // this pawn started at the top the of board so y must be one less than current y coordinate
-            return ( y - this.getYCoordinate() ) == -1;
+            return ( yCoordinate - this.getYCoordinate() ) == -1;
 
         }
 
 
     }
 
-    public boolean isValidCaptureForChessPiece( int x, int y )
+    public boolean isValidCaptureForChessPiece( int xCoordinate, int yCoordinate )
     {
         throw new UnsupportedOperationException( "Need to implement Pawn.isValidCaptureForChessPiece()" );
     }

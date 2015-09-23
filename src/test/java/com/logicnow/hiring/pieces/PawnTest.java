@@ -31,10 +31,17 @@ public class PawnTest
     }
 
     @Test
+    public void testPawn_ToString()
+    {
+        assertEquals( "Current X: -1"+System.lineSeparator()+"Current Y: -1"+System.lineSeparator()+"Piece Color: BLACK", this.testSubject.toString() );
+    }
+
+    @Test
     public void testPawn_Initial_Position()
     {
         assertEquals( this.testSubject.getXCoordinate(), -1 );
         assertEquals( this.testSubject.getYCoordinate(), -1 );
+        assertEquals( this.testSubject.getInitXCoordinate(), -1 );
         assertEquals( this.testSubject.getInitYCoordinate(), -1 );
     }
 
@@ -79,13 +86,23 @@ public class PawnTest
 
     }
 
-    @Test( expected = InvalidMovementException.class )
+    @Test
     public void testPawn_Move_IllegalCoordinates_Back_DoesNotMove() throws Exception
     {
 
         chessBoard.add( testSubject, 0, 0 );
         testSubject.move( MovementType.MOVE, 0, 1 );
-        testSubject.move( MovementType.MOVE, 0, 0 );
+
+        // use try/catch to test the coordinates are set in the exception properly
+        try
+        {
+            testSubject.move( MovementType.MOVE, 0, 0 );
+        }
+        catch (InvalidMovementException e)
+        {
+            assertEquals( 0, e.getxCoordinate() );
+            assertEquals( 0, e.getyCoordinate() );
+        }
         assertEquals( 0, testSubject.getXCoordinate() );
         assertEquals( 1, testSubject.getYCoordinate() );
 
@@ -127,14 +144,14 @@ public class PawnTest
     {
 
         chessBoard.add( testSubject, 0, 0 );
-        ChessPiece whitePawn = new Pawn( PieceColor.WHITE );
-        chessBoard.add( whitePawn, 0, 1 );
+        ChessPiece oppositionPawn1 = new Pawn( PieceColor.WHITE );
+        chessBoard.add( oppositionPawn1, 0, 1 );
         testSubject.move( MovementType.MOVE, 0, 1 );
         assertEquals( 0, testSubject.getXCoordinate() );
         assertEquals( 1, testSubject.getYCoordinate() );
-        assertEquals( whitePawn.getCapturedBy(), testSubject );
-        assertEquals( -1, whitePawn.getXCoordinate() );
-        assertEquals( -1, whitePawn.getYCoordinate() );
+        assertEquals( oppositionPawn1.getCapturedBy(), testSubject );
+        assertEquals( -1, oppositionPawn1.getXCoordinate() );
+        assertEquals( -1, oppositionPawn1.getYCoordinate() );
     }
 
     @Test

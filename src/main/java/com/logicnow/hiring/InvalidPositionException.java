@@ -39,4 +39,15 @@ public class InvalidPositionException extends ChessboardException
     {
         return yCoordinate;
     }
+
+    @Override
+    public String toString()
+    {
+        final StringBuilder sb = new StringBuilder( "InvalidPositionException{" );
+        sb.append( "chessboard=" ).append( getChessBoard() );
+        sb.append( ", xCoordinate=" ).append( xCoordinate );
+        sb.append( ", yCoordinate=" ).append( yCoordinate );
+        sb.append( '}' );
+        return sb.toString();
+    }
 }

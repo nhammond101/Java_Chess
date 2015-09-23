@@ -92,14 +92,14 @@ public class QueenTest
     {
 
         chessBoard.add( testSubject, 6, 3 );
-        ChessPiece whitePawn = new Pawn( PieceColor.WHITE );
-        chessBoard.add( whitePawn, 6, 2 );
+        ChessPiece oppositionPawn1 = new Pawn( PieceColor.WHITE );
+        chessBoard.add( oppositionPawn1, 6, 2 );
         testSubject.move( MovementType.MOVE, 6, 2 );
         assertEquals( 6, testSubject.getXCoordinate() );
         assertEquals( 2, testSubject.getYCoordinate() );
-        assertEquals( whitePawn.getCapturedBy(), testSubject );
-        assertEquals( -1, whitePawn.getXCoordinate() );
-        assertEquals( -1, whitePawn.getYCoordinate() );
+        assertEquals( oppositionPawn1.getCapturedBy(), testSubject );
+        assertEquals( -1, oppositionPawn1.getXCoordinate() );
+        assertEquals( -1, oppositionPawn1.getYCoordinate() );
     }
 
     @Test(expected = UnsupportedOperationException.class)

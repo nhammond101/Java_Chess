@@ -87,7 +87,7 @@ public abstract class ChessPiece implements IChessPiece
     protected String CurrentPositionAsString()
     {
         String eol = System.lineSeparator();
-        return String.format( "Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", eol, xCoordinate, yCoordinate, pieceColor );
+        return String.format( "Current X: %2$s%1$sCurrent Y: %3$s%1$sPiece Color: %4$s", eol, xCoordinate, yCoordinate, pieceColor );
     }
 
 }

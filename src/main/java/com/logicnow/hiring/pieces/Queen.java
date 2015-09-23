@@ -19,17 +19,17 @@ public class Queen extends ChessPiece
         this.pieceColor = pieceColor;
     }
 
-    public void move( MovementType movementType, int newX, int newY ) throws InvalidMovementException
+    public void move( MovementType movementType, int newXCoordinate, int newYCoordinate ) throws InvalidMovementException
     {
-        throw new InvalidMovementException( "Unsupported Move", this, newX, newY, movementType, new UnsupportedOperationException( "Need to implement Queen.move()" ) );
+        throw new InvalidMovementException( "Unsupported Move", this, newXCoordinate, newYCoordinate, movementType, new UnsupportedOperationException( "Need to implement Queen.move()" ) );
     }
 
-    public boolean isValidMoveForChessPiece( int x, int y )
+    public boolean isValidMoveForChessPiece( int xCoordinate, int yCoordinate )
     {
         throw new UnsupportedOperationException( "Need to implement Queen.isValidMoveForChessPiece()" );
     }
 
-    public boolean isValidCaptureForChessPiece( int x, int y )
+    public boolean isValidCaptureForChessPiece( int xCoordinate, int yCoordinate )
     {
         throw new UnsupportedOperationException( "Need to implement Queen.isValidCaptureForChessPiece()" );
     }

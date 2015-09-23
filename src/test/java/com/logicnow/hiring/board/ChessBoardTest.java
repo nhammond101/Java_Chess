@@ -88,6 +88,9 @@ public class ChessBoardTest
         catch (Exception e)
         {
             assertTrue( e instanceof InvalidPositionException );
+            assertEquals( 6, ( (InvalidPositionException)e ).getxCoordinate() );
+            assertEquals( 3, ( (InvalidPositionException)e ).getyCoordinate() );
+            assertEquals( testSubject, ( (InvalidPositionException)e ).getChessBoard() );
         }
         assertEquals( 6, firstPawn.getXCoordinate() );
         assertEquals( 3, firstPawn.getYCoordinate() );
