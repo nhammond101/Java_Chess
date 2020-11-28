@@ -44,7 +44,7 @@
     <properties>
         <junit.version>4.11</junit.version>
         <slf4j.version>1.7.12</slf4j.version>
-        <log4j.version>2.3</log4j.version>
+        <log4j.version>2.14.0</log4j.version>
         <jacoco.version>0.7.5.201505241946</jacoco.version>
         <surefire.version>2.15</surefire.version>
         <skip.unit.tests>false</skip.unit.tests>
